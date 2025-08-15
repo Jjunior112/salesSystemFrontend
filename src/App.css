@@ -376,6 +376,11 @@ tr button:nth-child(3) {
 
 }
 
+#deleteButton  {
+  background-color: var(--excluir);
+}
+
+
 .cart {
   padding: 2em;
 }
@@ -403,6 +408,10 @@ tr button:nth-child(3) {
 
 .cart td button:nth-child(2) {
   background-color: var(--cadastro);
+}
+
+#stockIn {
+  background-color: var(--color1);
 }
 
 .cartTotal {
@@ -469,6 +478,10 @@ tr button:nth-child(3) {
 
 .pagination span {
   font-weight: 500;
+}
+
+.error {
+  color: var(--excluir);
 }
 
 .error400 {

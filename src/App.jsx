@@ -31,6 +31,12 @@ import Usuarios from './components/pages/Usuarios/Usuarios'
 import EditarUsuario from './components/forms/EditarUsuario'
 import DeletarUsuario from './components/forms/DeletarUsuario'
 import DetalhesUsuario from './components/pages/Usuarios/DetalhesUsuario'
+import { AuthContext, AuthProvider } from './components/context/AuthContext'
+import DetalhesProduto from './components/pages/Produtos/DetalhesProduto'
+import DeletarProduto from './components/forms/DeletarProduto'
+import EntradaEstoque from './components/forms/EntradaEstoque'
+import EditarProduto from './components/forms/EditarProduto'
+import DeletarVenda from './components/forms/DeletarVenda'
 
 
 
@@ -63,201 +69,243 @@ function App() {
 
   return (
     <Router>
-      <CartProvider>
-        <Container>
-          <Routes>
-            {/* Rota pública */}
-            <Route path="/" element={<Main />} />
+      <AuthProvider>
+        <CartProvider>
+          <Container>
+            <Routes>
+              {/* Rota pública */}
+              <Route path="/" element={<Main />} />
 
-            {/* Rota protegida */}
+              {/* Rota protegida */}
 
-            <Route
-              path="/produtos"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Produtos />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/novoProduto"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <NovoProduto />
-                </ProtectedRoute>
-              }
-            />
+              <Route
+                path="/produtos"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Produtos />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/novoProduto"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <NovoProduto />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/detalhesProduto/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DetalhesProduto />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/editarProduto/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <EditarProduto />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/entradaEstoque/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <EntradaEstoque />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/excluirProduto/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DeletarProduto />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/carrinho"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Carrinho />
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path="/carrinho"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Carrinho />
-                </ProtectedRoute>
-              }
-            />
+              <Route
+                path="/novoCliente"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <NovoCliente />
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path="/novoCliente"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <NovoCliente />
-                </ProtectedRoute>
-              }
-            />
+              <Route
+                path="/novoVendedor"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <NovoVendedor />
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path="/novoVendedor"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <NovoVendedor />
-                </ProtectedRoute>
-              }
-            />
+              <Route
+                path="/detalhesCliente/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DetalhesCliente />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/detalhesVendedor/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DetalhesVendedor />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/excluirCliente/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DeletarCliente />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/editarCliente/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <EditarCliente />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/clientes"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Clientes />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/vendedores"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Vendedores />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/editarVendedor/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <EditarVendedor />
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path="/detalhesCliente/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <DetalhesCliente />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/detalhesVendedor/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <DetalhesVendedor />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/excluirCliente/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <DeletarCliente />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/editarCliente/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <EditarCliente />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/clientes"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Clientes />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/vendedores"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Vendedores />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/editarVendedor/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <EditarVendedor />
-                </ProtectedRoute>
-              }
-            />
+              <Route
+                path="/excluirVendedor/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DeletarVendedor />
+                  </ProtectedRoute>
+                }
+              />
 
-            <Route
-              path="/excluirVendedor/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <DeletarVendedor />
-                </ProtectedRoute>
-              }
-            />
-
-            <Route
-              path="/vendas"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Vendas />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/novaVenda"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <NovaVenda />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/detalhesVenda/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <DetalhesVenda />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/usuarios"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <Usuarios />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/novoAdmin"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <NovoAdmin />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/detalhesUsuario/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <DetalhesUsuario />
-                </ProtectedRoute>
-              }
-            />
-
-
-            <Route
-              path="/editarUsuario/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <EditarUsuario />
-                </ProtectedRoute>
-              }
-            />
-            <Route
-              path="/excluirUsuario/:id"
-              element={
-                <ProtectedRoute isAuthenticated={isAuthenticated}>
-                  <DeletarUsuario />
-                </ProtectedRoute>
-              }
-            />
-
-            {/* Rota para páginas não encontradas */}
-
-            <Route path="*" element={<Error404 />} />
-
-          </Routes>
-
-        </Container>
+              <Route
+                path="/vendas"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Vendas />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/novaVenda"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <NovaVenda />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/detalhesVenda/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DetalhesVenda />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/excluirVenda/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DeletarVenda />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/usuarios"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <Usuarios />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/novoAdmin"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <NovoAdmin />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/detalhesUsuario/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DetalhesUsuario />
+                  </ProtectedRoute>
+                }
+              />
 
 
-      </CartProvider>
+              <Route
+                path="/editarUsuario/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <EditarUsuario />
+                  </ProtectedRoute>
+                }
+              />
+              <Route
+                path="/excluirUsuario/:id"
+                element={
+                  <ProtectedRoute isAuthenticated={isAuthenticated}>
+                    <DeletarUsuario />
+                  </ProtectedRoute>
+                }
+              />
+
+              {/* Rota para páginas não encontradas */}
+
+              <Route path="*" element={<Error404 />} />
+
+            </Routes>
+
+          </Container>
+
+
+        </CartProvider>
+      </AuthProvider>
+
     </Router>
   )
 }
