@@ -58,6 +58,9 @@ const DetalhesProduto = () => {
                     <label>Marca</label>
                     <input type="text" value={product.brand} readOnly />
 
+                    <label>Descrição</label>
+                    <input type="text" value={product.productDescription} readOnly />
+
                     <label>Categoria</label>
                     <input type="text" value={product.productCategory} readOnly />
 
@@ -67,7 +70,7 @@ const DetalhesProduto = () => {
                     <label>Estoque</label>
                     <input type="text" value={product.balance} readOnly />
 
-                    <button onClick={() => navigate("/vendedores")}>Voltar</button>
+                    <button onClick={() => navigate("/produtos")}>Voltar</button>
                 </section>
             </main>
         </>
