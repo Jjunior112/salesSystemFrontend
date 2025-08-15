@@ -1,12 +1,14 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import NavBar from "../../layout/NavBar";
 import Pagination from "../../layout/Pagination";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../context/AuthContext";
 
 const Vendas = () => {
     const [sales, setSale] = useState([]);
     const [page, setPage] = useState(0);
     const [totalPages, setTotalPages] = useState(1);
+    const { role } = useContext(AuthContext)
 
     const fetchSales = (pageNumber) => {
         const token = localStorage.getItem("token");
@@ -82,7 +84,20 @@ const Vendas = () => {
                                     <td>{sale.sellerFirstName + " " + sale.sellerLastName}</td>
                                     <td>{formattedDate}</td>
                                     <td>{formattedAmount}</td>
-                                    <td><button><Link to={`/detalhesVenda/${sale.saleId}`}>Detalhes</Link></button></td>
+                                    <td>
+                                        <div>
+                                            <button><Link to={`/detalhesVenda/${sale.saleId}`}>Detalhes</Link></button>
+                                            {
+                                                role === "ADMIN" &&
+                                                (
+                                                    <button id="deleteButton"><Link to={`/excluirVenda/${sale.saleId}`}>Excluir</Link></button>
+                                                )
+
+
+                                            }
+                                        </div>
+                                    </td>
+
                                 </tr>
                             );
                         })}
