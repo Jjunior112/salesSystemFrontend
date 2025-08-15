@@ -28,9 +28,7 @@ const Main = () => {
             if (response.ok) {
                 const data = await response.json();
                 localStorage.setItem("token", data.token);
-
-
-                console.info("Login bem-sucedido:", data);
+                localStorage.setItem("role", data.role)
 
                 navigate("/produtos", { replace: true }); // Evita voltar pro login no back
             }
