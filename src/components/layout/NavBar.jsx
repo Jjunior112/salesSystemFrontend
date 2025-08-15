@@ -2,7 +2,8 @@ import { Link, useNavigate } from "react-router-dom";
 import { TiShoppingCart } from "react-icons/ti";
 import { useContext, useEffect, useRef, useState } from "react";
 import { IoMdArrowDropdown } from "react-icons/io";
-import { CartContext } from "../context/CartContext";
+import { AuthContext } from "../context/AuthContext";
+
 
 
 
@@ -10,10 +11,11 @@ const NavBar = () => {
 
   const navigate = useNavigate();
 
-  const { cart } = useContext(CartContext);
+  const { role } = useContext(AuthContext);
 
   const logout = () => {
     localStorage.clear("token")
+    localStorage.clear("role")
     navigate("/")
   }
 
@@ -32,15 +34,12 @@ const NavBar = () => {
 
 
   return (
+
     <nav>
 
       <ul>
 
         <li><Link to="/produtos"><img src="loja.png" alt="marca da loja" /></Link></li>
-
-        {/* <li><Link to="/carrinho"> <TiShoppingCart /> </Link></li> */}
-
-        {/* <li><button onClick={logout}>Logout</button></li> */}
 
         <li ref={menuRef} className="menu">
           <Link to="/carrinho"> <TiShoppingCart /> { } </Link>
@@ -52,18 +51,24 @@ const NavBar = () => {
             <div
               className="dropdownButton"
             >
-              <Link to="/usuarios" >
-                Usuarios
-              </Link>
               <Link to="/clientes">
                 Clientes
               </Link>
-              <Link to="/novoProduto">
-                Cadastrar novo produto
-              </Link>
-              <Link to="/vendedores" >
-                Vendedores
-              </Link>
+              {
+                role === "ADMIN" && (
+                  <>
+                    <Link to="/usuarios" >
+                      Usuarios
+                    </Link>
+                    <Link to="/novoProduto">
+                      Cadastrar novo produto
+                    </Link>
+                    <Link to="/vendedores" >
+                      Vendedores
+                    </Link>
+                  </>
+                )
+              }
               <Link to="/vendas" >
                 Vendas
               </Link>
